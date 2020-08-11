@@ -13,6 +13,7 @@
 
 ### Association
 * has_many :items
+* has_many :item_purchases
 
 ## items テーブル
 
@@ -36,10 +37,11 @@
 
 |Column|Type|Options|
 |:--:|:--:|:--:|
-|purchace|boolean||
+|user_id|references|null: false, foreign_key: true|
 |item_id|references|null: false, foreign_key: true|
 
 ### Association
+* belongs_to :user
 * belongs_to :item
 * has_one :address
 
