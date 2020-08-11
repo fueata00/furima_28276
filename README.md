@@ -29,7 +29,7 @@
 |prefecture_id|integer|null: false|
 |shipping_time_id|integer|null: false|
 |price|integer|null: false|
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ### Association
 * belongs_to :user
@@ -39,8 +39,8 @@
 
 |Column|Type|Options|
 |:--:|:--:|:--:|
-|user_id|references|null: false, foreign_key: true|
-|item_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 
 ### Association
 * belongs_to :user
@@ -57,7 +57,7 @@
 |address|string|null: false|
 |building|string||
 |phone_number|string|null: false|
-|item_purchase_id|references|null: false, foreign_key: true|
+|item_purchase|references|null: false, foreign_key: true|
 
 ### Association
 * belongs_to :item_purchase
