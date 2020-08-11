@@ -9,6 +9,8 @@
 |password|string|null: false|
 |firts_name|string|null: false|
 |last_name|string|null: false|
+|firts_name_kana|string|null: false|
+|last_name_kana|string|null: false|
 |birthday|date|null: false|
 
 ### Association
