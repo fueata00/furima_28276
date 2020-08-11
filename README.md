@@ -9,9 +9,7 @@
 |password|string|null: false|
 |firts_name|string|null: false|
 |last_name|string|null: false|
-|birth_year_id|integer|null: false|
-|birth_month_id|integer|null: false|
-|birth_day_id|integer|null: false|
+|birthday|date|null: false|
 
 ### Association
 * has_many :items
