@@ -30,9 +30,9 @@
 
 ### Association
 * belongs_to :user
-* has_one :transaction
+* has_one :item_purchases
 
-## transactions テーブル
+## item_purchases テーブル
 
 |Column|Type|Options|
 |:--:|:--:|:--:|
@@ -53,7 +53,7 @@
 |address|string|null: false|
 |building|string|null: false|
 |phone_number|string|null: false|
-|transaction_id|references|null: false, foreign_key: true|
+|item_purchase_id|references|null: false, foreign_key: true|
 
 ### Association
-* belongs_to :transaction
+* belongs_to :item_purchase
