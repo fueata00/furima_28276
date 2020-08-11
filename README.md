@@ -33,7 +33,7 @@
 
 ### Association
 * belongs_to :user
-* has_one :item_purchases
+* has_one :item_purchase
 
 ## item_purchases テーブル
 
