@@ -7,9 +7,9 @@
 |nickname|string|null: false|
 |email|string|null: false|
 |password|string|null: false|
-|firts_name|string|null: false|
+|first_name|string|null: false|
 |last_name|string|null: false|
-|firts_name_kana|string|null: false|
+|first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |birthday|date|null: false|
 
