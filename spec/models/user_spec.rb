@@ -14,6 +14,20 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
+    it 'nicknameがすでに存在している場合保存できないこと' do
+      @user.email = 'sample2@sample.com'
+      @user.save
+      another_user = FactoryBot.build(:user, nickname: @user.nickname)
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include("Nickname has already been taken")
+    end
+    it 'nicknameが大文字小文字を区別して保存できること' do
+      @user.nickname = 'たろーabc'
+      @user.email = 'sample2@sample.com'
+      @user.save
+      another_user = FactoryBot.build(:user, nickname: 'たろーABC')
+      expect(another_user).to be_valid
+    end
     it 'emailが空だと保存できないこと' do
       @user.email = nil
       @user.valid?
