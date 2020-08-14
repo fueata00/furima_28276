@@ -9,7 +9,7 @@ class User < ApplicationRecord
   valid_name_kana_regex = /\A[ァ-ヶー－]+\z/
 
   with_options presence: true do
-    validates :nickname
+    validates :nickname, uniqueness: { case_sensitive: true }
     validates :email
     validates :password, format: { with: valid_password_regex }
     validates :first_name, format: { with: valid_name_regex }
