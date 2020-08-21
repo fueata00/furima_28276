@@ -1,6 +1,6 @@
 class PurchaseInfo
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id, :token
 
   valid_postal_code_regex = /\A\d{3}[-]\d{4}\z/
   valid_phone_number_regex = /\A\d{10,11}\z/
@@ -13,6 +13,7 @@ class PurchaseInfo
     validates :city
     validates :address
     validates :phone_number, format: { with: valid_phone_number_regex }
+    validates :token
   end
 
   def save
