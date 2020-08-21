@@ -65,5 +65,10 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
     end
+    it 'sold_outがtureまたはfalse以外だと保存できないこと' do
+      @item.sold_out = ""
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Sold out is not included in the list')
+    end
   end
 end
