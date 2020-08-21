@@ -37,6 +37,7 @@ class ItemPurchasesController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+    redirect_to root_path if @item.sold_out
   rescue StandardError
     redirect_to root_path
   end
