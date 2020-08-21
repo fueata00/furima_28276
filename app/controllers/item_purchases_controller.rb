@@ -9,6 +9,7 @@ class ItemPurchasesController < ApplicationController
     if @purchase_info.valid?
       pay_item
       @purchase_info.save
+      @item.update(sold_out: true)
       redirect_to root_path
     else
       render :index
