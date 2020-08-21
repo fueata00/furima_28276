@@ -21,4 +21,5 @@ class Item < ApplicationRecord
     validates :user
     validates :image
   end
+  validates :sold_out, inclusion: { in: [true, false] }
 end
