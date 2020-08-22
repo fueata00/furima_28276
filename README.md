@@ -29,6 +29,7 @@
 |prefecture_id|integer|null: false|
 |shipping_time_id|integer|null: false|
 |price|integer|null: false|
+|sold_out|boolean|null: false, default: false|
 |user|references|null: false, foreign_key: true|
 
 ### Association
@@ -52,7 +53,7 @@
 |Column|Type|Options|
 |:--:|:--:|:--:|
 |postal_code|string|null: false|
-|prefecture_id|intger|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |building|string||
