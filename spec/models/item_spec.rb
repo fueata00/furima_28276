@@ -13,17 +13,17 @@ RSpec.describe Item, type: :model do
     it 'imageが空だと保存できないこと' do
       @item.image = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("画像を入力してください")
+      expect(@item.errors.full_messages).to include('画像を入力してください')
     end
     it 'nameが空だと保存できないこと' do
       @item.name = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("商品名を入力してください")
+      expect(@item.errors.full_messages).to include('商品名を入力してください')
     end
     it 'textが空だと保存できないこと' do
       @item.text = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("商品の説明を入力してください")
+      expect(@item.errors.full_messages).to include('商品の説明を入力してください')
     end
     it 'category_idが1(---)だと保存できないこと' do
       @item.category_id = 1
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
     it 'priceが空だと保存できないこと' do
       @item.price = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("価格を入力してください")
+      expect(@item.errors.full_messages).to include('価格を入力してください')
     end
     it 'priceが300未満だと保存できないこと' do
       @item.price = 299

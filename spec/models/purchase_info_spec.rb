@@ -12,12 +12,12 @@ RSpec.describe PurchaseInfo, type: :model do
     it 'クレジットカードのトークンが取得できなければ保存できないこと' do
       @purchase_info.token = nil
       @purchase_info.valid?
-      expect(@purchase_info.errors.full_messages).to include("クレジットカード情報を入力してください")
+      expect(@purchase_info.errors.full_messages).to include('クレジットカード情報を入力してください')
     end
     it 'postal_codeが空だと保存できないこと' do
       @purchase_info.postal_code = nil
       @purchase_info.valid?
-      expect(@purchase_info.errors.full_messages).to include("郵便番号を入力してください")
+      expect(@purchase_info.errors.full_messages).to include('郵便番号を入力してください')
     end
     it 'postal_codeにハイフンが含まれないと保存出来ないこと' do
       @purchase_info.postal_code = '1234567'
@@ -32,17 +32,17 @@ RSpec.describe PurchaseInfo, type: :model do
     it 'cityが空だと保存出来ないこと' do
       @purchase_info.city = nil
       @purchase_info.valid?
-      expect(@purchase_info.errors.full_messages).to include("市区町村を入力してください")
+      expect(@purchase_info.errors.full_messages).to include('市区町村を入力してください')
     end
     it 'addressが空だと保存出来ないこと' do
       @purchase_info.address = nil
       @purchase_info.valid?
-      expect(@purchase_info.errors.full_messages).to include("番地を入力してください")
+      expect(@purchase_info.errors.full_messages).to include('番地を入力してください')
     end
     it 'phone_numberが空だと保存出来ないこと' do
       @purchase_info.phone_number = nil
       @purchase_info.valid?
-      expect(@purchase_info.errors.full_messages).to include("電話番号を入力してください")
+      expect(@purchase_info.errors.full_messages).to include('電話番号を入力してください')
     end
     it 'phone_numberが9桁以下だと保存出来ないこと' do
       @purchase_info.phone_number = '111111111'
