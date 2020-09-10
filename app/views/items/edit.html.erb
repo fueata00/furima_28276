@@ -1,1 +1,1 @@
-<%= render partial: 'item_form', locals: { item: @item} %>
+<%= render partial: 'item_form', locals: { item: @item, tags: @item.tags, path: item_path(@item), http_method: "PATCH"} %>

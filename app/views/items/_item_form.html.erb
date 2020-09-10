@@ -7,7 +7,7 @@
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
 
-    <%= form_with model: item, local: true do |f| %>
+    <%= form_with model: item, url: path, method: http_method, local: true do |f| %>
       
       <%= render 'shared/error_messages', model: item %>
 
@@ -56,7 +56,19 @@
             タグ
             <span class="form-any">任意</span>
           </div>
-          <textarea class="tags-text" id="tag-name-1" placeholder="タグ（任意 10文字まで)" maxlength="10" name="item[tags][name][]"></textarea>
+          <% if request.path_info.match(/items\/\d+/) %>
+            <% count = 1 %>
+            <% tags.each do |tag| %>
+              <%= f.fields_for tag do |t| %>
+                <%= t.text_field :name, class: "tags-text", id:"tag-name-#{count}", placeholder: "タグ（任意 10文字まで)", maxlength: "10", name: "item[tags][name][]", multiple: true %>
+              <% end %>
+              <% count += 1 %>
+            <% end %>
+          <% else %>
+            <%= f.fields_for :tag do |t| %>
+              <%= t.text_field :name, class: "tags-text", id:"tag-name-1", placeholder: "タグ（任意 10文字まで)", maxlength: "10", name: "item[tags][name][]", multiple: true %>
+            <% end %>
+          <% end %>
           <div class="weight-bold-text">
             商品の状態
             <span class="indispensable">必須</span>
