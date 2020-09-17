@@ -6,12 +6,13 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item_tag = ItemTag.new
   end
 
   def create
-    @item = ItemTag.new(item_params)
-    if @item.save
+    @item_tag = ItemTag.new(item_params)
+    if @item_tag.valid?
+      @item_tag.save
       redirect_to root_path
     else
       render :new
@@ -19,15 +20,19 @@ class ItemsController < ApplicationController
   end
 
   def show
+    set_tag_list
   end
 
   def edit
+    @item_tag = ItemTag.new
     redirect_to item_path(@item) if current_user.id != @item.user_id
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path(@item)
+    @item_tag = ItemTag.new(item_params.merge(item_id: params[:id]))
+    if @item_tag.valid?(:update)
+      @item_tag.update
+      redirect_to item_path(params[:id])
     else
       render :edit
     end
@@ -56,4 +61,12 @@ class ItemsController < ApplicationController
   rescue StandardError
     redirect_to root_path
   end
+
+  def set_tag_list
+    @tag_list = []
+    @item.tags.each do |tag|
+      @tag_list << tag.name
+    end
+  end
+
 end

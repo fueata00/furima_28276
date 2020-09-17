@@ -9,7 +9,7 @@
 
     <%= form_with model: item, url: path, method: http_method, local: true do |f| %>
       
-      <%= render 'shared/error_messages', model: item %>
+      <%= render 'shared/error_messages', model: item_tag %>
 
       <%# 出品画像 %>
       <div class="img-upload">
@@ -56,9 +56,9 @@
             タグ
             <span class="form-any">任意</span>
           </div>
-          <% if request.path_info.match(/items\/\d+/) %>
+          <% if request.path_info.match(/items\/\d+/) && item.tags != [] %>
             <% count = 1 %>
-            <% tags.each do |tag| %>
+            <% item.tags.each do |tag| %>
               <%= f.fields_for tag do |t| %>
                 <%= t.text_field :name, class: "tags-text", id:"tag-name-#{count}", placeholder: "タグ（任意 10文字まで)", maxlength: "10", name: "item[tags][name][]", multiple: true %>
               <% end %>
