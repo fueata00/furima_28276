@@ -11,4 +11,7 @@ class Item < ApplicationRecord
   has_many :item_tag_relations
   has_many :tags, through: :item_tag_relations, dependent: :destroy
 
+  validates :sold_out, inclusion: { in: [true, false] }
+  validates :image
+  
 end
