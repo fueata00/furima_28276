@@ -111,6 +111,35 @@
 
 /* /商品名と商品説明 */
 
+/* 商品タグ */
+.tags-text {
+  width: 100%;
+  padding: 16px 16px 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+.tag-child{
+  border-bottom:#666 1px solid;
+  margin: 10px 0;
+  padding-left: 11px;
+}
+
+#add-tag-button{
+  width: auto;
+  height: auto;
+  font-size: 20px;
+}
+
+#remove-tag-button{
+  width: auto;
+  height: auto;
+  font-size: 20px;
+}
+/* 商品タグ */
+
 /* 商品の詳細など */
 .items-detail {
   display: flex;

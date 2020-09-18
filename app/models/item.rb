@@ -8,18 +8,10 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_one :item_purchase
+  has_many :item_tag_relations
+  has_many :tags, through: :item_tag_relations, dependent: :destroy
 
-  with_options presence: true do
-    validates :name
-    validates :text
-    validates :category_id, numericality: { other_than: 1 }
-    validates :status_id, numericality: { other_than: 1 }
-    validates :shipping_fee_id, numericality: { other_than: 1 }
-    validates :prefecture_id, numericality: { other_than: 1 }
-    validates :shipping_time_id, numericality: { other_than: 1 }
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-    validates :user_id
-    validates :image
-  end
   validates :sold_out, inclusion: { in: [true, false] }
+  validates :image, presence: true
+
 end

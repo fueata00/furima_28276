@@ -7,9 +7,9 @@
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
 
-    <%= form_with model: item, local: true do |f| %>
+    <%= form_with model: item, url: path, method: http_method, local: true do |f| %>
       
-      <%= render 'shared/error_messages', model: item %>
+      <%= render 'shared/error_messages', model: item_tag %>
 
       <%# 出品画像 %>
       <div class="img-upload">
@@ -52,6 +52,33 @@
             <span class="indispensable">必須</span>
           </div>
           <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+          <div class="weight-bold-text">
+            タグ (3つまで)
+            <span class="form-any">任意</span>
+          </div>
+          <% if request.path_info.match(/items\/\d+/) && item.tags != [] %>
+            <% count = 1 %>
+            <% item.tags.each do |tag| %>
+              <%= f.fields_for tag do |t| %>
+                <%= t.text_field :name, class: "tags-text", id:"tag-name-#{count}", placeholder: "タグ（任意 10文字まで)", maxlength: "10", name: "item[tags][name][]", multiple: true %>
+              <% end %>
+              <% count += 1 %>
+            <% end %>
+              <div class="search-result" id="search-result"></div>
+              <div class="tag-button">
+                <button type="button" id="add-tag-button">+</button>
+                <button type="button" id="remove-tag-button">-</button>
+              </div>
+          <% else %>
+            <%= f.fields_for :tag do |t| %>
+              <%= t.text_field :name, class: "tags-text", id:"tag-name-1", placeholder: "タグ（任意 10文字まで)", maxlength: "10", name: "item[tags][name][]", multiple: true %>
+              <div class="search-result" id="search-result"></div>
+              <div class="tag-button">
+                <button type="button" id="add-tag-button">+</button>
+                <button type="button" id="remove-tag-button">-</button>
+              </div>
+            <% end %>
+          <% end %>
           <div class="weight-bold-text">
             商品の状態
             <span class="indispensable">必須</span>
