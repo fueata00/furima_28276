@@ -32,9 +32,9 @@
             let xhr = new XMLHttpRequest();
             const url = location.pathname
             if (url.match(/edit/)){
-              xhr.open("GET", `../search/?input=${input}`, true);
+              xhr.open("GET", `../../tags/search/?input=${input}`, true);
             } else{
-              xhr.open("GET", `search/?input=${input}`, true);
+              xhr.open("GET", `../tags/search/?input=${input}`, true);
             }
             xhr.responseType = "json";
             xhr.send();
