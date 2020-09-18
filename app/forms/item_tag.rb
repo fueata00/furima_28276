@@ -14,7 +14,6 @@ class ItemTag
     validates :user_id
     validates :image, unless: -> { validation_context == :update }
   end
-  validates :sold_out, inclusion: { in: [true, false] }
 
   def save
     item = Item.create(name: name, text: text, category_id: category_id, status_id: status_id, shipping_fee_id: shipping_fee_id, prefecture_id: prefecture_id, shipping_time_id: shipping_time_id, price: price, user_id: user_id, user_id: user_id, image: image)
