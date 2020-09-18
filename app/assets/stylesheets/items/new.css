@@ -120,6 +120,24 @@
   font-size: 16px;
   resize: none;
 }
+
+.tag-child{
+  border-bottom:#666 1px solid;
+  margin: 10px 0;
+  padding-left: 11px;
+}
+
+#add-tag-button{
+  width: auto;
+  height: auto;
+  font-size: 20px;
+}
+
+#remove-tag-button{
+  width: auto;
+  height: auto;
+  font-size: 20px;
+}
 /* 商品タグ */
 
 /* 商品の詳細など */

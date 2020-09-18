@@ -53,7 +53,7 @@
           </div>
           <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
           <div class="weight-bold-text">
-            タグ
+            タグ (3つまで)
             <span class="form-any">任意</span>
           </div>
           <% if request.path_info.match(/items\/\d+/) && item.tags != [] %>
@@ -64,9 +64,19 @@
               <% end %>
               <% count += 1 %>
             <% end %>
+              <div class="search-result" id="search-result"></div>
+              <div class="tag-button">
+                <button type="button" id="add-tag-button">+</button>
+                <button type="button" id="remove-tag-button">-</button>
+              </div>
           <% else %>
             <%= f.fields_for :tag do |t| %>
               <%= t.text_field :name, class: "tags-text", id:"tag-name-1", placeholder: "タグ（任意 10文字まで)", maxlength: "10", name: "item[tags][name][]", multiple: true %>
+              <div class="search-result" id="search-result"></div>
+              <div class="tag-button">
+                <button type="button" id="add-tag-button">+</button>
+                <button type="button" id="remove-tag-button">-</button>
+              </div>
             <% end %>
           <% end %>
           <div class="weight-bold-text">
