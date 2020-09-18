@@ -1,5 +1,5 @@
-if (document.getElementsByClassName("tags-text")){
-  window.addEventListener("load", () => {
+ window.addEventListener("load", () => {
+  if (document.getElementById("tag-name-1")){
     let count = 0
     const inputElements = document.querySelectorAll(".tags-text");
 
@@ -30,7 +30,12 @@ if (document.getElementsByClassName("tags-text")){
           let input = document.getElementById(`tag-name-${step}`).value;
           if (input){
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", `search/?input=${input}`, true);
+            const url = location.pathname
+            if (url.match(/edit/)){
+              xhr.open("GET", `../search/?input=${input}`, true);
+            } else{
+              xhr.open("GET", `search/?input=${input}`, true);
+            }
             xhr.responseType = "json";
             xhr.send();
             xhr.onload = () => {
@@ -68,5 +73,5 @@ if (document.getElementsByClassName("tags-text")){
         }
       }
     })
-  })
-};
+  }
+})
