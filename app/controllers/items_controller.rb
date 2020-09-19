@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :search_item, only: [:index, :show, :search]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -51,6 +52,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @results = @p.result.includes(:user)
+  end
+
   private
 
   def item_params
@@ -68,6 +73,10 @@ class ItemsController < ApplicationController
     @item.tags.each do |tag|
       @tag_list << tag.name
     end
+  end
+
+  def search_item
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
   end
 
 end
