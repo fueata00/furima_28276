@@ -1,0 +1,24 @@
+<%= render "shared/header" %>
+
+<div class = 'search-content'>
+  <div class = 'search-main'>
+    <div class = 'item-search-result'>
+      <% if @results.length !=0 %>
+        <div class='item-contents'>
+          <h2 class='search-title-head'><%= params[:q][:name_i_cont_any] %>
+            <span class='search-title-text' >の検索結果</span>
+          </h2>
+          <ul class='item-lists'>
+            <%= render partial: 'item', collection: @results %>
+          </ul>
+        </div>
+      <% else %>
+        <div class='item-contents'>
+          該当する商品はありません
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
