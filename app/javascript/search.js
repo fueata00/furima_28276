@@ -67,5 +67,63 @@ function priceSelectJudge(psj){
   return {min,max};
 }
 
+function checkBoxSelect(){
+  const statusBoxes = document.querySelectorAll('.q_status_ids')
+  const ShippingFeeBoxes = document.querySelectorAll('.q_shipping_fee_ids')
+  const SalesStatusBoxes = document.querySelectorAll('.q_sales_status_ids')
+  // 「すべて」チェックボックスのイベント
+  checkBoxAll(statusBoxes)
+  checkBoxAll(ShippingFeeBoxes)
+  checkBoxAll(SalesStatusBoxes)
+  // 「すべて」以外のチェックボックスのイベント
+  checkBoxAllSelect(statusBoxes)
+  checkBoxAllSelect(ShippingFeeBoxes)
+  checkBoxAllSelect(SalesStatusBoxes)
+}
+
+function checkBoxAll(elm){
+  elm[0].addEventListener("change", () => {
+    if (elm[0].checked === true){             //「すべて」にチェックが入っているとき
+      elm.forEach((e) => {                    // 「すべてのチェックボックス」にチェックを入れる
+        if (e.value !== '1'){
+          e.checked = true;
+        }
+      })
+    } else {                                 //「すべて」にチェックが入っていないとき
+      elm.forEach((e) => {                   // 「すべてのチェックボックス」からチェックを外す
+        e.checked = false;
+      })
+    }
+  })
+}
+
+function checkBoxAllSelect(elm){
+  const elmentLength = elm.length
+  elm.forEach((e) => {
+    if (e.value != '1'){
+      e.addEventListener("change", () => {
+        if (elm[0].checked === true){                           //「すべて」にチェックが入っているとき
+          for (let count = 1; count < elmentLength; count ++){
+            if (elm[count].checked === false){                  // 「すべて」以外一つでもチェックボックスにチェックが入っていなければ
+              elm[0].checked = false;                         //「すべて」のチェックを外す
+              break;
+            }
+          }
+        } else {                                                //「すべて」にチェックが入っていないとき
+          let checkAll = true;
+          for (let count = 1; count < elmentLength; count ++){
+            if (elm[count].checked === false){                  // 「すべて」以外一つでもチェックボックスにチェックが入っていなければ
+              checkAll = false;                                 //「すべて」のチェックを外す
+              break;
+            }
+          }
+          elm[0].checked = checkAll;
+        }
+      })
+    }
+  })
+}
+
 window.addEventListener("load", searchPriceInfo);
 window.addEventListener("load", itemSort);
+window.addEventListener("load", checkBoxSelect);

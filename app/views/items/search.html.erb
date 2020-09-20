@@ -46,7 +46,7 @@
           <div class='search-checkboxes'>
             <% SearchStatus.all.each do |s| %>
               <div class='search-checkbox'>
-                <input type="checkbox" value=<%="#{s.id}"%> name="q[status][ids][]" id=<%="q_status_ids_#{s.id}"%>>
+                <input type="checkbox" value=<%="#{s.id}"%> name="q[status][ids][]" id=<%="q_status_ids_#{s.id}"%> class="q_status_ids">
                 <label for=<%="q_status_ids_##{s.id}"%>><%="#{s.name}"%></label>
               </div>
             <% end %>
@@ -59,7 +59,7 @@
           <div class='search-checkboxes'>
             <% SearchShippingFee.all.each do |s| %>
               <div class='search-checkbox'>
-                <input type="checkbox" value=<%="#{s.id}"%> name="q[shipping_fee]][ids][]" id=<%="q_shipping_fee_ids_#{s.id}"%>>
+                <input type="checkbox" value=<%="#{s.id}"%> name="q[shipping_fee]][ids][]" id=<%="q_shipping_fee_ids_#{s.id}"%> class="q_shipping_fee_ids">
                 <label for=<%="q_shipping_fee_ids_##{s.id}"%>><%="#{s.name}"%></label>
               </div>
             <% end %>
@@ -72,7 +72,7 @@
           <div class='search-checkboxes'>
             <% SalesStatus.all.each do |s| %>
               <div class='search-checkbox'>
-                <input type="checkbox" value=<%="#{s.id}"%> name="q[sales_status]][ids][]" id=<%="q_sales_status_ids_#{s.id}"%>>
+                <input type="checkbox" value=<%="#{s.id}"%> name="q[sales_status]][ids][]" id=<%="q_sales_status_ids_#{s.id}"%> class="q_sales_status_ids">
                 <label for=<%="q_sales_status_ids_##{s.id}"%>><%="#{s.name}"%></label>
               </div>
             <% end %>
