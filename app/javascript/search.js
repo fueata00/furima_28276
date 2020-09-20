@@ -1,3 +1,13 @@
+function itemSort(){
+  if(document.getElementById('search-item-sort') != null){
+    const sortSelect = document.getElementById('search-item-sort')
+    const searchForm = document.getElementById('detailed-item-search')
+    sortSelect.addEventListener("change", () => {
+      searchForm.submit()
+    })
+  }
+}
+
 function searchPriceInfo() {
   if (document.getElementById("search-price-select") != null) {
     const priceSelect = document.getElementById('search-price-select')
@@ -12,7 +22,7 @@ function searchPriceInfo() {
 
     checkPriceNumber(inputPriceMax);
     checkPriceNumber(inputPriceMin);
-  };
+  }
 }
 
 function checkPriceNumber(elm){
@@ -58,3 +68,4 @@ function priceSelectJudge(psj){
 }
 
 window.addEventListener("load", searchPriceInfo);
+window.addEventListener("load", itemSort);

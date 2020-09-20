@@ -2,10 +2,10 @@
 
 <div class = 'search-content'>
   <div class = 'search-side'>
-    <%= search_form_for @p, class: "detailed-search-form", url: detailed_search_items_path do |f| %>
+    <%= search_form_for @p, class: "detailed-search-form", id: "detailed-item-search", url: detailed_search_items_path do |f| %>
       <div class='search-form-group'>
         <%= f.fields_for :item_sort do |i| %>
-          <%= i.collection_select :id, ItemSort.all, :id, :name, {}, {class:"search-sort"} %>
+          <%= i.collection_select :id, ItemSort.all, :id, :name, {}, {class:"search-sort", id:"search-item-sort"} %>
         <% end %>
       </div>
       <div class='search-dropdown-content'>
