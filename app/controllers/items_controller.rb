@@ -56,6 +56,13 @@ class ItemsController < ApplicationController
     @results = @p.result.includes(:user)
   end
 
+  def detailed_search
+    search_item_form = SearchItemForm.new(search_params)
+    @p, @results = search_item_form.search
+    @results = search_item_form.sort_results
+    render :search
+  end
+
   private
 
   def item_params
@@ -77,6 +84,10 @@ class ItemsController < ApplicationController
 
   def search_item
     @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  end
+
+  def search_params
+    params.require(:q).permit(:name_i_cont_any, :tags_name_i_cont_any, :price_gteq, :price_lteq, item_sort: [:id], category: [:id], status: {ids: []}, shipping_fee: {ids: []}, sales_status: {ids: []})
   end
 
 end
