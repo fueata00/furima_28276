@@ -3,6 +3,8 @@ class SearchItemForm
   attr_accessor :name_i_cont_any, :tags_name_i_cont_any, :price_gteq, :price_lteq, :category, :item_sort, :status, :shipping_fee, :sales_status
 
   def search
+    price_gteq = check_number(price_gteq)
+    price_lteq = check_number(price_lteq)
     p = Item.ransack(name_i_cont_any: name_i_cont_any, tags_name_i_cont_any: tags_name_i_cont_any, price_gteq: price_gteq, price_lteq: price_lteq)
     @results = p.result
     @results = @results.where(category_id: category[:id]) if category[:id] != '1'
@@ -39,6 +41,14 @@ class SearchItemForm
       'id ASC'
     when '5'
       'id DESC'
+    end
+  end
+
+  def check_number(number)
+    if number.to_i == 0
+      return nil
+    else
+      return mumber.to_i
     end
   end
 end
