@@ -6,12 +6,8 @@ class SearchItemForm
     p = Item.ransack(name_i_cont_any: name_i_cont_any, tags_name_i_cont_any: tags_name_i_cont_any, price_gteq: price_gteq, price_lteq: price_lteq)
     @results = p.result
     @results = @results.where(category_id: category[:id]) if category[:id] != '1'
-    if status.present? && status[:ids][0] != '1'
-      @results = @results.where(status_id: status[:ids])
-    end
-    if shipping_fee.present? && status[:ids][0] != '1'
-      @results = @results.where(shipping_fee_id: shipping_fee[:ids])
-    end
+    @results = @results.where(status_id: status[:ids]) if status.present? && status[:ids][0] != '1'
+    @results = @results.where(shipping_fee_id: shipping_fee[:ids]) if shipping_fee.present? && status[:ids][0] != '1'
     if sales_status.present? && sales_status[:ids][0] != '1'
       count = 1
       sales_status[:ids].each do |s|
@@ -23,29 +19,26 @@ class SearchItemForm
       end
       @results = results.where(sold_out: sales_status[:ids])
     end
-    return p, @results
+    [p, @results]
   end
 
   def sort_results
     @results = @results.order(sort_params) if sort_params.present?
-    return @results
+    @results
   end
 
   private
-  
+
   def sort_params
     case item_sort[:id]
     when '2'
-      return "price ASC"
+      'price ASC'
     when '3'
-      return "price DESC"
+      'price DESC'
     when '4'
-      return "id ASC"
+      'id ASC'
     when '5'
-      return "id DESC"
-    else
-      return nil
+      'id DESC'
     end
   end
-
 end

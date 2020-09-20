@@ -66,7 +66,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, :price, :image, tags: {name: []}).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, :price, :image, tags: { name: [] }).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -87,7 +87,6 @@ class ItemsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:name_i_cont_any, :tags_name_i_cont_any, :price_gteq, :price_lteq, item_sort: [:id], category: [:id], status: {ids: []}, shipping_fee: {ids: []}, sales_status: {ids: []})
+    params.require(:q).permit(:name_i_cont_any, :tags_name_i_cont_any, :price_gteq, :price_lteq, item_sort: [:id], category: [:id], status: { ids: [] }, shipping_fee: { ids: [] }, sales_status: { ids: [] })
   end
-
 end
