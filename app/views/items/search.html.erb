@@ -33,11 +33,11 @@
             <span>価格を選択する</span>
           </label>
           <%= f.fields_for :price do |i| %>
-            <%= i.collection_select :id, SearchPrice.all, :id, :name, {}, {class:"search-select"} %>
+            <%= i.collection_select :id, SearchPrice.all, :id, :name, {}, {class:"search-select", id:'search-price-select'} %>
           <% end %>
-            <%= f.search_field :price_gteq, class: 'search-price', placeholder: '円' %>
+            <%= f.search_field :price_gteq, class: 'search-price', id:'search-price-min', placeholder: '円' %>
             <span>~<span>
-            <%= f.search_field :price_lteq, class: 'search-price', placeholder: '円' %>
+            <%= f.search_field :price_lteq, class: 'search-price', id: 'search-price-max', placeholder: '円' %>
         </div>
         <div class='search-form-group'>
           <label>
