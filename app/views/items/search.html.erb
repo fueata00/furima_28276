@@ -1,8 +1,93 @@
 <%= render "shared/header" %>
 
 <div class = 'search-content'>
-  <div class = 'search-main'>
-    <div class = 'item-search-result'>
+  <div class = 'search-side'>
+    <%= search_form_for @p, class: "detailed-search-form", url: detailed_search_items_path do |f| %>
+      <div class='search-form-group'>
+        <%= f.fields_for :item_sort do |i| %>
+          <%= i.collection_select :id, ItemSort.all, :id, :name, {}, {class:"search-sort"} %>
+        <% end %>
+      </div>
+      <div class='search-dropdown-content'>
+        <h3 class='detailed-search-text'>詳細検索</h3>
+        <div class='search-form-group'>
+            <span>キーワードを追加する</span>
+            <%= f.search_field :name_i_cont_any, class: 'search-input' %>
+        </div>
+        <div class='search-form-group'>
+          <label>
+            <span>カテゴリーを選択する</span>
+          </label>
+          <%= f.fields_for :category do |i| %>
+            <%= i.collection_select :id, SearchCategory.all, :id, :name, {}, {class:"search-select"} %>
+          <% end %>
+        </div>
+        <div class='search-form-group'>
+          <label>
+            <span>タグ名から探す</span>
+          </label>
+          <%= f.search_field :tags_name_i_cont_any, class:"search-input" , placeholder: 'タグ'%>
+        </div>
+        <div class='search-form-group'>
+          <label>
+            <span>価格を選択する</span>
+          </label>
+          <%= f.fields_for :price do |i| %>
+            <%= i.collection_select :id, SearchPrice.all, :id, :name, {}, {class:"search-select"} %>
+          <% end %>
+            <%= f.search_field :price_gteq, class: 'search-price', placeholder: '円' %>
+            <span>~<span>
+            <%= f.search_field :price_lteq, class: 'search-price', placeholder: '円' %>
+        </div>
+        <div class='search-form-group'>
+          <label>
+            <span>商品の状態</span>
+          </label>
+          <div class='search-checkboxes'>
+            <% SearchStatus.all.each do |s| %>
+              <div class='search-checkbox'>
+                <input type="checkbox" value=<%="#{s.id}"%> name="q[status][ids][]" id=<%="q_status_ids_#{s.id}"%>>
+                <label for=<%="q_status_ids_##{s.id}"%>><%="#{s.name}"%></label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class='search-form-group'>
+          <label>
+            <span>配送料の負担</span>
+          </label>
+          <div class='search-checkboxes'>
+            <% SearchShippingFee.all.each do |s| %>
+              <div class='search-checkbox'>
+                <input type="checkbox" value=<%="#{s.id}"%> name="q[shipping_fee]][ids][]" id=<%="q_shipping_fee_ids_#{s.id}"%>>
+                <label for=<%="q_shipping_fee_ids_##{s.id}"%>><%="#{s.name}"%></label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class='search-form-group'>
+          <label>
+            <span>販売状況</span>
+          </label>
+          <div class='search-checkboxes'>
+            <% SalesStatus.all.each do |s| %>
+              <div class='search-checkbox'>
+                <input type="checkbox" value=<%="#{s.id}"%> name="q[sales_status]][ids][]" id=<%="q_sales_status_ids_#{s.id}"%>>
+                <label for=<%="q_sales_status_ids_##{s.id}"%>><%="#{s.name}"%></label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class='search-button-form'>
+          <button type='reset' class='detailed-search-button clear-button'>クリア</button>
+          <button type='submit' class='detailed-search-button submit-button'>検索</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='search-main'>
+    <div class='item-search-result'>
       <% if @results.length !=0 %>
         <div class='item-contents'>
           <h2 class='search-title-head'><%= params[:q][:name_i_cont_any] %>
@@ -18,6 +103,13 @@
         </div>
       <% end %>
     </div>
+  </div>
+
+  <div class='purchase-btn'>
+    <span class='purchase-btn-text'>出品する</span>
+    <a href= '/items/new'>
+      <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+    </a>
   </div>
 </div>
 

@@ -1,6 +1,111 @@
+.search-content {
+  margin: 0 20px 0;
+  display: flex;
+}
+
+.search-side{
+  width: 280px;
+  padding: 40px 0;
+  margin-right: 20px;
+}
+
+.search-form-group {
+  margin-top: 24px;
+}
+
+.search-sort {
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.search-dropdown-content {
+  background-color: lightgray;
+  margin-top: 40px;
+  padding: 16px;
+}
+
+.search-input {
+  height: 40px;
+  width: 100%;
+  padding: 0 16px;
+  margin-top: 8px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.search-select {
+  height: 40px;
+  width: 100%;
+  padding: 0 16px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+.search-price {
+  height: 40px;
+  width: 45%;
+  padding: 0 16px;
+  margin-top: 8px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.search-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-checkbox {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  padding: 4px;
+}
+
+.search-checkbox input {
+  display: inline-block;
+  height: 30px;
+  width: 20%;
+}
+
+.search-checkbox label {
+  display: inline-block;
+  width: 80%;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.search-button-form {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.detailed-search-button {
+  width: 40%;
+  height: 40px;
+  color: white;
+  border-radius: 4px;
+  border: none;
+
+}
+
+.clear-button {
+  background-color: gray;
+}
+
+.submit-button {
+  background-color: red;
+}
+
+.search-main {
+  width: calc(100% - 280px);
+}
+
 .search-title-head {
   font-size: 22px;
-  margin: 16px 0 8px;
+  margin: 24px 0 8px;
 }
 
 .search-title-text {
@@ -9,4 +114,8 @@
 
 .item-contents {
   padding: 40px 0;
+}
+
+.item-lists {
+  width: auto;
 }
