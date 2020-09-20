@@ -53,10 +53,12 @@ class ItemsController < ApplicationController
   end
 
   def search
+    redirect_to root_path if params[:q] == nil
     @results = @p.result.includes(:user)
   end
 
   def detailed_search
+    redirect_to root_path if params[:q] == nil
     search_item_form = SearchItemForm.new(search_params)
     @p, @results = search_item_form.search
     @results = search_item_form.sort_results
