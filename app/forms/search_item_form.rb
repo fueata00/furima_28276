@@ -46,9 +46,9 @@ class SearchItemForm
 
   def check_number(number)
     if number.to_i == 0
-      return nil
+      nil
     else
-      return mumber.to_i
+      mumber.to_i
     end
   end
 end
