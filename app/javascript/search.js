@@ -68,17 +68,19 @@ function priceSelectJudge(psj){
 }
 
 function checkBoxSelect(){
-  const statusBoxes = document.querySelectorAll('.q_status_ids')
-  const ShippingFeeBoxes = document.querySelectorAll('.q_shipping_fee_ids')
-  const SalesStatusBoxes = document.querySelectorAll('.q_sales_status_ids')
-  // 「すべて」チェックボックスのイベント
-  checkBoxAll(statusBoxes)
-  checkBoxAll(ShippingFeeBoxes)
-  checkBoxAll(SalesStatusBoxes)
-  // 「すべて」以外のチェックボックスのイベント
-  checkBoxAllSelect(statusBoxes)
-  checkBoxAllSelect(ShippingFeeBoxes)
-  checkBoxAllSelect(SalesStatusBoxes)
+  if (document.getElementById("search-price-select") != null){ 
+    const statusBoxes = document.querySelectorAll('.q_status_ids')
+    const ShippingFeeBoxes = document.querySelectorAll('.q_shipping_fee_ids')
+    const SalesStatusBoxes = document.querySelectorAll('.q_sales_status_ids')
+    // 「すべて」チェックボックスのイベント
+    checkBoxAll(statusBoxes)
+    checkBoxAll(ShippingFeeBoxes)
+    checkBoxAll(SalesStatusBoxes)
+    // 「すべて」以外のチェックボックスのイベント
+    checkBoxAllSelect(statusBoxes)
+    checkBoxAllSelect(ShippingFeeBoxes)
+    checkBoxAllSelect(SalesStatusBoxes)
+  }
 }
 
 function checkBoxAll(elm){
