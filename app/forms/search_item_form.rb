@@ -48,7 +48,7 @@ class SearchItemForm
     if number.to_i == 0
       nil
     else
-      mumber.to_i
+      number.to_i
     end
   end
 end
