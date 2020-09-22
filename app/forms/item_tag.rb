@@ -17,7 +17,7 @@ class ItemTag
 
   def save
     item = Item.create(name: name, text: text, category_id: category_id, status_id: status_id, shipping_fee_id: shipping_fee_id, prefecture_id: prefecture_id, shipping_time_id: shipping_time_id, price: price, user_id: user_id, user_id: user_id, image: image)
-    
+
     tags[:name].each do |n|
       tag = Tag.where(name: n).first_or_initialize
       tag.save
@@ -27,12 +27,12 @@ class ItemTag
 
   def update
     item = Item.find(item_id)
-    if image == nil
+    if image.nil?
       item.update(name: name, text: text, category_id: category_id, status_id: status_id, shipping_fee_id: shipping_fee_id, prefecture_id: prefecture_id, shipping_time_id: shipping_time_id, price: price, user_id: user_id)
     else
       item.update(name: name, text: text, category_id: category_id, status_id: status_id, shipping_fee_id: shipping_fee_id, prefecture_id: prefecture_id, shipping_time_id: shipping_time_id, price: price, user_id: user_id, image: image)
     end
-    
+
     item_tag_rel = ItemTagRelation.where(item_id: item_id)
     item_tag_rel.each do |rel|
       rel.destroy
@@ -40,10 +40,7 @@ class ItemTag
 
     tags[:name].each do |n|
       tag = Tag.where(name: n).first_or_initialize
-      if tag.save
-        ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
-      end
+      ItemTagRelation.create(item_id: item.id, tag_id: tag.id) if tag.save
     end
   end
-
 end

@@ -13,5 +13,4 @@ class Item < ApplicationRecord
 
   validates :sold_out, inclusion: { in: [true, false] }
   validates :image, presence: true
-
 end

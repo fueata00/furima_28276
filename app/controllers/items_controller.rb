@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :search_item, only: [:index, :show, :search]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -51,10 +52,23 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    redirect_to root_path if params[:q].nil?
+    @results = @p.result.includes(:user)
+  end
+
+  def detailed_search
+    redirect_to root_path if params[:q].nil?
+    search_item_form = SearchItemForm.new(search_params)
+    @p, @results = search_item_form.search
+    @results = search_item_form.sort_results
+    render :search
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, :price, :image, tags: {name: []}).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, :price, :image, tags: { name: [] }).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -70,4 +84,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search_item
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  end
+
+  def search_params
+    params.require(:q).permit(:name_i_cont_any, :tags_name_i_cont_any, :price_gteq, :price_lteq, item_sort: [:id], category: [:id], status: { ids: [] }, shipping_fee: { ids: [] }, sales_status: { ids: [] })
+  end
 end
