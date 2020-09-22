@@ -27,10 +27,10 @@ function searchPriceInfo() {
 
 function checkPriceNumber(elm){
   elm.addEventListener("input", () => {
-    elm.value = elm.value.replace(/[^0-9０-９]+/i,'')
+    elm.value = elm.value.replace(/[^0-9]+/i,'')
   });
   elm.addEventListener("blur", () => {
-    elm.value = elm.value.replace(/[^0-9０-９]+/i,'')
+    elm.value = elm.value.replace(/[^0-9]+/i,'')
   });
 }
 
