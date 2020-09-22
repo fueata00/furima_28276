@@ -126,6 +126,38 @@ function checkBoxAllSelect(elm){
   })
 }
 
+function clearFormAll() {
+  if (document.getElementById('detailed-item-search')){
+    const formElements = document.getElementById('detailed-item-search')
+    const resetButton = document.getElementById('clear-button')
+    resetButton.addEventListener("click", (rb) => {
+      rb.preventDefault
+      for (let count = 0; count<formElements.length; count++){
+          clearElement(formElements[count]);
+        }
+    })
+  }
+}
+
+function clearElement(element) {
+  switch(element.type) {
+      case "submit":
+      case "reset":
+          return;
+      case "search":
+          element.value = "";
+          return;
+      case "checkbox":
+          element.checked = false;
+          return;
+      case "select-one":
+          element.selectedIndex = 0;
+          return;
+      default:
+  }
+}
+
 window.addEventListener("load", searchPriceInfo);
 window.addEventListener("load", itemSort);
 window.addEventListener("load", checkBoxSelect);
+window.addEventListener("load", clearFormAll);
