@@ -28,3 +28,13 @@ ja:
         building: 建物名
         phone_number: 電話番号
         token: クレジットカード情報
+      item_tag:
+        name: 商品名
+        text: 商品の説明
+        category_id: 商品カテゴリー
+        status_id: 商品の状態
+        shipping_fee_id: 配送料の負担
+        prefecture_id: 発送元の地域
+        shipping_time_id: 発送までの日数
+        price: 価格
+        image: 画像
