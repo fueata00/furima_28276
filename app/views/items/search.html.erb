@@ -26,7 +26,8 @@
           <label>
             <span>タグ名から探す</span>
           </label>
-          <%= f.search_field :tags_name_i_cont_any, class:"search-input" , placeholder: 'タグ'%>
+          <%= f.search_field :tags_name_i_cont_any, class:"search-input" , id:"tag-name-1", placeholder: 'タグ'%>
+          <div class="search-result" id="search-result"></div>
         </div>
         <div class='search-form-group'>
           <label>

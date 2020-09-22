@@ -2,27 +2,30 @@
   if (document.getElementById("tag-name-1")){
     let count = 0
     const inputElements = document.querySelectorAll(".tags-text");
-
     let tagLength = inputElements.length
-    const addButton = document.getElementById('add-tag-button')
-    addButton.addEventListener("click", (b)=> {
-      b.preventDefault();
-      if (tagLength <= 2){
-        lastTagElement = document.getElementById(`tag-name-${tagLength}`)
-        let tagHtml = `<input class="tags-text" id="tag-name-${tagLength + 1}" placeholder="タグ（任意 10文字まで)" maxlength="10" name="item[tags][name][]" multiple="multiple" size="10" type="text" />`
-        tagLength += 1
-        lastTagElement.insertAdjacentHTML("afterend", tagHtml);
-      }
-    })
-    const removeButton = document.getElementById('remove-tag-button')
-    removeButton.addEventListener("click", (b)=> {
-      b.preventDefault();
-      if (tagLength >= 2){
-        lastTagElement = document.getElementById(`tag-name-${tagLength}`)
-        lastTagElement.remove()
-        tagLength -= 1
-      }
-    })
+    if (document.getElementById('add-tag-button')){
+      const addButton = document.getElementById('add-tag-button')
+      addButton.addEventListener("click", (b)=> {
+        b.preventDefault();
+        if (tagLength <= 2){
+          lastTagElement = document.getElementById(`tag-name-${tagLength}`)
+          let tagHtml = `<input class="tags-text" id="tag-name-${tagLength + 1}" placeholder="タグ（任意 10文字まで)" maxlength="10" name="item[tags][name][]" multiple="multiple" size="10" type="text" />`
+          tagLength += 1
+          lastTagElement.insertAdjacentHTML("afterend", tagHtml);
+        }
+      })
+    }
+    if (document.getElementById('remove-tag-button')){
+      const removeButton = document.getElementById('remove-tag-button')
+      removeButton.addEventListener("click", (b)=> {
+        b.preventDefault();
+        if (tagLength >= 2){
+          lastTagElement = document.getElementById(`tag-name-${tagLength}`)
+          lastTagElement.remove()
+          tagLength -= 1
+        }
+      })
+    }
 
     document.addEventListener("keyup", (eKeyUp) => {
       for (let step=1; step<=3; step++){
