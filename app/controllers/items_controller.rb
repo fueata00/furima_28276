@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :search_item, only: [:index, :show, :search]
 
   def index
-    @items = Item.includes(:user).order('created_at DESC')
+    @items = Item.with_attached_image.order('created_at DESC')
   end
 
   def new
@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
 
   def search
     redirect_to root_path if params[:q].nil?
-    @results = @p.result.includes(:user)
+    @results = @p.result.with_attached_image
   end
 
   def detailed_search
